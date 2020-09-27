@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons'
+
+
 
 import { MEALS, CATEGORIES } from "../data/dummy-data"
+import HeaderButton from '../components/HeaderButton'
 
 const MealDetailScreen = props => {
     const mealId = props.navigation.getParam("mealId");
@@ -21,7 +25,13 @@ const MealDetailScreen = props => {
 MealDetailScreen.navigationOptions = (navigationData) => {
 
     const catId = navigationData.navigation.getParam("categoryId");
-    const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
+    var selectedCategory = CATEGORIES.find(cat => cat.id === catId);
+    var CategoryColor;
+
+    if(selectedCategory === undefined)
+        CategoryColor = "orange"
+    else
+        CategoryColor = selectedCategory.color
     
     const mealId = navigationData.navigation.getParam("mealId");
     const selectedMeal = MEALS.find(meal => meal.id === mealId);
@@ -29,10 +39,15 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 
     return {
         headerTitle: selectedMeal.title,
+        headerRight: (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item title="Favorite" iconName="ios-star" onPress={() => {console.log("FAV")}} />
+            </HeaderButtons>
+        ),
         headerStyle: {
-            backgroundColor: Platform.OS === "android" ? selectedCategory.color : ""
+            backgroundColor: Platform.OS === "android" ? CategoryColor : ""
         },
-        headerTintColor: Platform.OS === "android" ? "white" : selectedCategory.color
+        headerTintColor: Platform.OS === "android" ? "white" : CategoryColor
     };
 };
 

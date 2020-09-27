@@ -23,7 +23,7 @@ const MealItem = props => {
 };
 
 const styles = StyleSheet.create({
-    mealItem: { height: 200, width: "100%", backgroundColor: "#ccc", marginTop: 10, borderTopLeftRadius: 10, borderTopRightRadius: 10 , overflow: "hidden" },
+    mealItem: { height: 200, width: "100%", backgroundColor: "#ccc", marginTop: 15, borderTopLeftRadius: 10, borderTopRightRadius: 10 , overflow: "hidden" },
     mealRow: { flexDirection: "row" },
     mealHeader: { height: "90%" },
     mealDetails: { paddingHorizontal: 10, justifyContent: "space-between" },

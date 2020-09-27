@@ -4,6 +4,8 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity, Platform } from 're
 import { CATEGORIES } from '../data/dummy-data'
 import Colors from '../constans/Colors'
 import CategoryGridTile from '../components/CategoryGridTile'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
+import HeaderButton from '../components/HeaderButton'
 
 
 
@@ -29,7 +31,10 @@ CategoriesScreen.navigationOptions = {
     headerStyle: {
         backgroundColor: Platform.OS === "android" ? Colors.primaryColor : ""
     },
-    headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor
+    headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor,
+    headerLeft: <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item title="Menu" iconName="ios-menu" onPress={() => {} }  />
+    </HeaderButtons>
 };
 
 const styles = StyleSheet.create({
